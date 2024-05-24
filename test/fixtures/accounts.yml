@@ -1,3 +1,3 @@
 one:
-  numero_conta: 234
-  saldo: 200.00
+  account_number: 1234
+  balance: 200.00
