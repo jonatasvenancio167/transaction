@@ -28,4 +28,24 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
   end
+  
+  describe "GET #show" do
+    let(:account) { Account.create(account_number: 123456, balance: 500.0) }
+
+    context "when the account exists" do
+      it "returns the account details" do
+        get :show, params: { numero_conta: account.account_number }, format: :json
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body)["numero_conta"]).to eq(account.numero_conta)
+        expect(JSON.parse(response.body)["saldo"]).to eq(account.saldo)
+      end
+    end
+
+    context "when the account does not exist" do
+      it "returns a not found response" do
+        get :show, params: { numero_conta: 999 }, format: :json
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
