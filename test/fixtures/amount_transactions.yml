@@ -2,13 +2,3 @@ one:
   amount: 100
   transaction_type: D
   account: one
-
-two:
-  amount: 100
-  transaction_type: C
-  account: two
-
-three: 
-  amount: 100
-  transaction_type: P
-  account: three
