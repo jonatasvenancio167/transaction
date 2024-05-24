@@ -12,25 +12,18 @@ class AccountsController < ApplicationController
     end
   end
 
-  def find_by_account_number
-    @account = Account.find_by(account_number: params[:numero_conta])
-
+  def show
     if @account
-      render json: @account
+      render json: { numero_conta: @account.numero_conta, saldo: @account.saldo }, status: 200
     else
       render json: { error: 'Account not found' }, status: :not_found
     end
   end
 
-  # GET /accounts/:id
-  def show
-    render json: @account
-  end
-
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.find_by(account_number: params[:numero_conta])
   end
 
   def account_params
